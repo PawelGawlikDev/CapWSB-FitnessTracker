@@ -4,6 +4,9 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -21,4 +24,12 @@ interface UserRepository extends JpaRepository<User, Long> {
                         .findFirst();
     }
 
+    private int calculateAge(LocalDate birthdate) {
+        LocalDate now = LocalDate.now();
+        return Period.between(birthdate, now).getYears();
+    }
+
+    default List<User> findOlderThen(int age) {
+        return findAll().stream().filter(user -> calculateAge(user.getBirthdate()) > age).toList();
+    }
 }
