@@ -1,9 +1,12 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.internal.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -22,14 +25,24 @@ public class TrainingMapper {
         return trainingDto;
     }
 
-    public Training toEntity(TrainingDto trainingDto) {
+    public Training toEntity(TrainingDto trainingDto,  User user, Object o) {
         return new Training(
-                userMapper.toEntity(trainingDto.getUser()),
+                user,
                 trainingDto.getStartTime(),
                 trainingDto.getEndTime(),
                 trainingDto.getActivityType(),
                 trainingDto.getDistance(),
                 trainingDto.getAverageSpeed()
         );
+    }
+
+    Training toUpdateTraining(UpdateTrainingDto trainingDto, User user, Long id) {
+        return new Training(id,
+                user,
+                trainingDto.startTime(),
+                trainingDto.endTime(),
+                trainingDto.activityType(),
+                trainingDto.distance(),
+                trainingDto.averageSpeed());
     }
 }

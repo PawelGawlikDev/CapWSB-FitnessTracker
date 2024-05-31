@@ -9,3 +9,4 @@ public record TrainingFullDto(@Nullable Long id, User user, Date startTime, Date
                               double distance, double averageSpeed) {
 
 }
+
