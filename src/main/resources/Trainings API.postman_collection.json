@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "d4b4834e-27c3-4eb2-9c42-c688336c9ff0",
+		"name": "Trainings API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34687363"
+	},
+	"item": [
+		{
+			"name": "Get all trainings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/v1/trainings/all"
+			},
+			"response": []
+		},
+		{
+			"name": "Get by finish date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/v1/trainings/finish_date/2024-01-15"
+			},
+			"response": []
+		},
+		{
+			"name": "Get trainings for user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/v1/trainings/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get activity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/trainings/get_activity?activityType=RUNNING",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trainings",
+						"get_activity"
+					],
+					"query": [
+						{
+							"key": "activityType",
+							"value": "RUNNING"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add training",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"startTime\": \"2024-01-19T07:00:00.000+00:00\",\r\n    \"endTime\": \"2024-01-19T08:30:00.000+00:00\",\r\n    \"activityType\": \"RUNNING\",\r\n    \"distance\": 100.5,\r\n    \"averageSpeed\": 80.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/v1/trainings/add_training/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update activity",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"startTime\": \"2024-01-19T07:00:00.000+00:00\",\r\n    \"endTime\": \"2024-01-19T08:30:00.000+00:00\",\r\n    \"activityType\": \"TENNIS\",\r\n    \"distance\": 10.5,\r\n    \"averageSpeed\": 18.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/v1/trainings/update_activity/1"
+			},
+			"response": []
+		}
+	]
+}

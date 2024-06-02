@@ -41,7 +41,7 @@ public class TrainingController {
         return trainingMapper.toDto(training);
     }
 
-    @GetMapping("finish_training/{finishedDate}")
+    @GetMapping("finish_date/{finishedDate}")
     public List<TrainingDto> getAllFinishedTrainings(@PathVariable("finishedDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
         return trainingService.getAllFinishTrainings(date).stream().map(trainingMapper::toDto).toList();
     }
@@ -54,7 +54,7 @@ public class TrainingController {
         return trainingMapper.toDto(training);
     }
 
-    @GetMapping("getActivity")
+    @GetMapping("get_activity")
     public List<TrainingDto> getTrainingsByType(@RequestParam String activityType) {
         ActivityType type = ActivityType.valueOf(activityType);
         return trainingService.getAllTrainingTypes(type)
