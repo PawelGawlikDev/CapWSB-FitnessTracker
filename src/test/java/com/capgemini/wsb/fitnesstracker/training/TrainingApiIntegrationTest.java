@@ -87,7 +87,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+00:00");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
-        mockMvc.perform(get("/v1/trainings/finish_training/{finishedDate}", "2024-05-18").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/trainings/finish_date/{finishedDate}", "2024-05-18").contentType(MediaType.APPLICATION_JSON))
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
@@ -119,7 +119,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$[0].user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$[0].user.email").value(user1.getEmail()))
                 .andExpect(jsonPath("$[0].activityType").value(training2.getActivityType().toString()))
-                .andExpect(jsonPath("$[1].user.id").value(user1.getId()))
+                .andExpect(jsonPath("$[1].user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$[1].user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$[1].user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$[1].user.email").value(user1.getEmail()))
@@ -143,7 +143,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                     "averageSpeed": 8.2
                 }
                 """.formatted(user1.getId());
-        mockMvc.perform(post("/v1/trainings").contentType(MediaType.APPLICATION_JSON).content(requestBody))
+        mockMvc.perform(post("/v1/trainings/add_training").contentType(MediaType.APPLICATION_JSON).content(requestBody))
                 .andDo(log())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.user.Id").value(user1.getId()))

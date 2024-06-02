@@ -73,7 +73,7 @@
 						}
 					}
 				},
-				"url": "localhost:8080/v1/trainings/add_training/1"
+				"url": "localhost:8080/v1/trainings/add_training"
 			},
 			"response": []
 		},

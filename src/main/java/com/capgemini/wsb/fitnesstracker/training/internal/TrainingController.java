@@ -33,8 +33,10 @@ public class TrainingController {
         return trainingService.getAllTrainingsForUser(userId).stream().map(trainingMapper::toDto).toList();
     }
 
-    @PostMapping("add_training/{userId}")
-    public TrainingDto  addTraining(@RequestBody TrainingDto trainingDto, @PathVariable long userId) {
+    @PostMapping("add_training")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TrainingDto  addTraining(@RequestBody TrainingWithoutUser trainingDto) {
+        long userId = trainingDto.userId();
         User user = userService.getUser(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         Training training = trainingService.addTraining(trainingMapper.toEntity(trainingDto, user, null));

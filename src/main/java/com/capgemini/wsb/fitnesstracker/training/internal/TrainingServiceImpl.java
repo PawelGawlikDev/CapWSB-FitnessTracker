@@ -64,10 +64,6 @@ public class TrainingServiceImpl implements TrainingProvider {
         return trainingRepository.findAll().stream().filter(training -> training.getActivityType().equals(activity)).collect(Collectors.toList());
     }
 
-    public void updateActivity(long id, ActivityType newActivityType) {
-        Training training = trainingRepository.getReferenceById(id);
-        training.setActivityType(newActivityType);
-    }
     public void deleteUserTrainings(long userId) {
         List<Training> trainings = trainingRepository.findAll().stream()
                 .filter(training -> training.getUser().getId().equals(userId))

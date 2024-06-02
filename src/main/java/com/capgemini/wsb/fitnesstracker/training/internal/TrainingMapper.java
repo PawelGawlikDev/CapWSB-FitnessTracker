@@ -19,6 +19,7 @@ public class TrainingMapper {
         trainingDto.setId(training.getId());
         trainingDto.setUser(userMapper.toDto(training.getUser()));
         trainingDto.setAverageSpeed(training.getAverageSpeed());
+        trainingDto.setActivityType(training.getActivityType());
         trainingDto.setDistance(training.getDistance());
         trainingDto.setStartTime(training.getStartTime());
         trainingDto.setEndTime(training.getEndTime());
@@ -34,6 +35,16 @@ public class TrainingMapper {
                 trainingDto.getDistance(),
                 trainingDto.getAverageSpeed()
         );
+    }
+
+    Training toEntity(TrainingWithoutUser trainingDto, User user, Long id) {
+        return new Training(id,
+                user,
+                trainingDto.startTime(),
+                trainingDto.endTime(),
+                trainingDto.activityType(),
+                trainingDto.distance(),
+                trainingDto.averageSpeed());
     }
 
     Training toUpdateTraining(UpdateTrainingDto trainingDto, User user, Long id) {
